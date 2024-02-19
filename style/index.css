@@ -1,0 +1,184 @@
+
+:root {
+    --light-background: #f8f8f8;
+    --dark-text: #333;
+    --header-background: #fff;
+    --transparent-nav-background: transparent;
+    --nav-text: #333;
+    --nav-hover-background: #ddd;
+    --logo-background: #fff;
+    --logo-text: #4285f4;
+    --logo-span: #db4437;
+    --footer-background: #333;
+    --footer-text: #fff;
+
+    /* Button Styles */
+    --btn-fill-background: #db4437;
+    --btn-empty-background: #FFF;
+    --btn-border-radius: 15px;
+    --btn-padding: 12px;
+    --btn-transition-duration: 700ms;
+}
+
+body {
+    font-family: 'Baloo Bhai', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-background);
+    color: var(--dark-text);
+}
+
+header {
+    color: var(--dark-text);
+    padding: 20px;
+    text-align: center;
+    background-color: var(--header-background);
+}
+
+nav {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--transparent-nav-background);
+    padding: 10px 20px;
+}
+
+nav a {
+    color: var(--nav-text);
+    text-align: center;
+    padding: 0px 18px 16px 0px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+nav a:hover {
+    background-color: var(--nav-hover-background);
+}
+
+.right-navbar {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--logo-background);
+    border-radius: 8px;
+    margin-bottom: 0px;
+}
+
+.logo h1 {
+    margin: 0;
+    color: var(--logo-text);
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--logo-span);
+    font-size: 18px;
+}
+
+.sign-links {
+    display: flex;
+    gap: 10px;
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.category {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 10px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #fff;
+}
+
+.category img {
+    width: 100%;
+    height: auto;
+}
+
+.category-content {
+    padding: 15px;
+}
+
+.footer {
+    background-color: var(--footer-background);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Button Styles */
+.fill-btn,
+.empty-btn {
+    border-radius: var(--btn-border-radius);
+    overflow: hidden;
+    display: inline-block;
+    padding: var(--btn-padding);
+    text-decoration: none;
+    color: white;
+    transition: background-color var(--btn-transition-duration) linear;
+}
+
+.fill-btn {
+    background: var(--btn-fill-background);
+}
+
+.empty-btn {
+    color: black;
+    background: var(--btn-empty-background);
+}
+.sign-in-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4285f4;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #357ae8;
+}
