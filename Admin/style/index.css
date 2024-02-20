@@ -1,0 +1,117 @@
+  /* Navbar styles */
+  .admin-navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* Initially shown */
+    height: 100%;
+    width: 250px;
+    transition: left 0.3s;
+    z-index: 1;
+}
+
+.admin-navbar.closed {
+    left: -250px;
+    /* Move left to hide */
+}
+
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin-left: 0;
+    /* Adjust for the menu width */
+    padding: 0 20px;
+}
+
+.admin-logo a {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.admin-logo a:hover {
+    text-decoration: underline;
+}
+
+.admin-nav-links {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-nav-links li {
+    margin-bottom: 20px;
+}
+
+.admin-nav-links a {
+    text-decoration: none;
+    color: white;
+}
+
+.admin-nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Hamburger icon */
+.hamburger-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    color: brown;
+    /* Change color to black */
+    font-size: 24px;
+    z-index: 2;
+    /* Ensure it's above the navbar */
+}
+
+/* Toggle menu width when clicking the hamburger icon */
+.menu-closed .admin-navbar {
+    left: -250px;
+}
+
+/* Adjust padding for main content */
+.main-content {
+    padding-right: 250px;
+    /* Same width as the sidebar */
+    margin-left: 250px;
+    /* Adjust for the navbar width */
+}
+
+.admin-nav-links a {
+    text-decoration: none;
+    color: white;
+}
+
+.admin-nav-links a:hover {
+    text-decoration: none;
+    /* Remove text decoration on hover */
+}
+
+/* Style for menu item with children */
+.menu-item-has-children {
+    position: absolute;
+    bottom: 20px;
+    /* Adjust as needed */
+    left: 70px;
+    width: 100%;
+}
+
+/* Style for the square digits */
+.square-digit {
+    width: 100px;
+    height: 100px;
+    background-color: #007bff;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}

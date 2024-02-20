@@ -1,11 +1,4 @@
-<?php
-session_start();
-// Check if the user is logged in, if not redirect to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
-    exit;
-}
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +12,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <link href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
+<<<<<<< Updated upstream
     <style>
         /* Navbar styles */
         .admin-navbar {
@@ -123,13 +117,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             margin: 10px;
         }
     </style>
+=======
+   <link rel="stylesheet" href="style/index.css">
+>>>>>>> Stashed changes
 </head>
 
 <body>
-    <div class="hamburger-icon" onclick="toggleMenu()">
-        &#9776;
-    </div>
+   
 
+<<<<<<< Updated upstream
     <nav class="admin-navbar menu-closed">
         <ul class="admin-nav-links">
 
@@ -167,6 +163,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
         </ul>
     </nav>
+=======
+  
+<?php include('includes/nav.php'); ?>
+>>>>>>> Stashed changes
 
     <!-- main content -->
     <section class="main" style="padding-left:120px; margin:20px">

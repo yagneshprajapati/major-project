@@ -20,7 +20,12 @@ if (!$result) {
         <title>User Report</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-        <style>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@icon/themify-icons@1.0.1-alpha.3/themify-icons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+       <style>
             table th td {
                 text-align: center;
             }
@@ -34,9 +39,15 @@ if (!$result) {
                 font-size: 28px;
             }
         </style>
+        <link rel="stylesheet" href="style/index.css">
     </head>
 
     <body>
+        <div class="flex">
+        <?php include('includes/nav.php'); ?>
+
+
+        
         <div class="container mt-5">
             <h2>User Report</h2>
             <table class="table table-striped">
@@ -69,6 +80,11 @@ if (!$result) {
                 </tbody>
             </table>
         </div>
+
+        </div>
+  
+
+ 
     </body>
 
     </html>
