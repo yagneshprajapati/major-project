@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     move_uploaded_file($_FILES["prod_img2"]["tmp_name"], $target_dir . $prod_img2);
     move_uploaded_file($_FILES["prod_img3"]["tmp_name"], $target_dir . $prod_img3);
 
-    $sql = "INSERT INTO `products` (`prod_name`, `prod_price`, `prod_des`, `prod_img1`, `prod_img2`, `prod_img3`,`prod_rating`) VALUES ('$prod_name', '$prod_price', '$prod_des', '$prod_img1', '$prod_img2','$prod_img3',$prod_rating)";
+    $sql = "INSERT INTO `products` (`prod_name`, `prod_price`, `prod_des`, `prod_img1`, `prod_img2`, `prod_img3`,`prod_rating`) VALUES ('$prod_name', '$prod_price', '$prod_des', '$prod_img1', '$prod_img2','$prod_img3','$prod_rating')";
     $result = mysqli_query($conn, $sql);
 
     if($result){ 
@@ -94,28 +94,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   <title>Adding Product</title>
   <style>
     /* Reset some default styles for better consistency */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* Global styles */
-body {
-    background-image: url('/Awd Project/image minor/product.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    font-family: Arial, sans-serif;
-}
+    /* Global styles */
+    body {
+      background-image: url('/Awd Project/image minor/product.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Custom styles */
+    .form-group {
+      width: 50%; /* Adjust the width of the form elements */
+      margin: 0 auto; /* Center align the form elements */
+    }
+
+    .modal-body {
+      padding: 20px; /* Increase padding for better readability */
+    }
+
+    .modal-dialog {
+      max-width: 70%; /* Adjust the maximum width of the modal dialog */
+      margin: 100px auto; /* Center align the modal */
+    }
+
+    .container {
+      max-width: 80%; /* Adjust the maximum width of the container */
+      margin: 0 auto; /* Center align the container */
+    }
   </style>
 </head>
 
 <body>
-<?php include('./include/navbar.php'); ?>
+  <?php include('./include/navbar.php'); ?>
   <!-- Edit Modal -->
-  <div class="container1 modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
-    aria-hidden="true">
+  <div class="container1 modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -159,8 +178,6 @@ body {
               <label for="prod_ratingEdit">Prating</label>
               <input type="text" class="form-control" id="prod_ratingEdit" name="prod_ratingEdit">
             </div>
-            
-            
           </div>
           <div class="modal-footer d-block mr-auto">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -305,9 +322,6 @@ body {
         prod_img3 = tr.getElementsByTagName("td")[5].innerText;
         prod_rating = tr.getElementsByTagName("td")[6].innerText;
 
-        // Pquantity = tr.getElementsByTagName("td")[4].innerText;
-        // Pcategory = tr.getElementsByTagName("td")[5].innerText;
-        console.log(prod_name,prod_price,prod_des,prod_img1,prod_img2,prod_img3,prod_rating);
         document.getElementById("prod_nameEdit").value = prod_name;
         document.getElementById("prod_priceEdit").value = prod_price;
         document.getElementById("prod_desEdit").value = prod_des;
@@ -316,7 +330,6 @@ body {
         document.getElementById("prod_img3Edit").value = prod_img3;
         document.getElementById("prod_ratingEdit").value = prod_rating;
         document.getElementById("prod_idEdit").value = e.target.id;
-        console.log(e.target.id);
         $('#editModal').modal('toggle');
       })
     })
