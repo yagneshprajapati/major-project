@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
-         .admin-navbar {
+        .admin-navbar {
             background-color: #333;
             color: white;
             padding: 10px 0;
@@ -60,9 +61,11 @@
             text-decoration: none;
             color: white;
         }
+
         .admin-nav-links a:hover {
             text-decoration: underline;
         }
+
         /* Hamburger icon */
         .hamburger-icon {
             position: fixed;
@@ -72,8 +75,9 @@
             color: green;
             font-size: 24px;
             z-index: 2;
-   
+
         }
+
         .menu-closed .admin-navbar {
             left: -250px;
         }
@@ -92,6 +96,7 @@
         .admin-nav-links a:hover {
             text-decoration: none;
         }
+
         .menu-item-has-children {
             position: absolute;
             bottom: 20px;
@@ -101,8 +106,9 @@
         }
     </style>
 </head>
+
 <body>
-<div class="hamburger-icon" onclick="toggleMenu()">
+    <div class="hamburger-icon" onclick="toggleMenu()">
         &#9776;
     </div>
 
@@ -118,9 +124,10 @@
                     </div>
                 </div>
                 <div class="admin-logo">
-                    <a href="#">Admin Dashboard</a>
+                    
                 </div>
                 <div class="nav" style="margin-top: 25px;">
+                    <li><a href="./admin_home.php">AdminDashboard</a></li>
                     <li><a href="./User_Profile.php">User Profile</a></li>
                     <li><a href="./Category_Managment.php">Category Management</a></li>
                     <li><a href="./Product_Managment.php">Product Management</a></li>
@@ -130,7 +137,7 @@
                     <li><a href="./Manage_Booking.php">Manage Booking</a></li>
                     <li><a href="./Inventory_management.php">Inventory management</a></li>
                     <li><a href="./Feedback.php">Feedback</a></li>
-                </div>  
+                </div>
                 <div>
                     <li class="menu-item-has-children">
                         <a class="nav-link" href="logout.php"><i class="fa fa-power-off"></i>Logout</a>
@@ -147,6 +154,7 @@
             body.classList.toggle("menu-closed");
         }
     </script>
-    
+
 </body>
+
 </html>
