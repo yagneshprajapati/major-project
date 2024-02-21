@@ -13,7 +13,7 @@
     </header>
 
 
-    <nav>
+   <nav>
             <div class="left-navbar">
                 <a href="#ecommerce">Furniture</a>
                 <a href="#minitv">Gym</a>
