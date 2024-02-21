@@ -4,7 +4,7 @@
             <h1>shop<span>flix</span></h1>
             <div class="right-navbar">
                 <div class="sign-links">
-                    <a href="#signin" class="empty-btn">Sign In</a>
+                    <a href="login.php" class="empty-btn">Sign In</a>
                     <a href="#signup" class="fill-btn">Sign Up</a>
                 </div>
             </div>
