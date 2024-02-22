@@ -8,7 +8,7 @@
 </head>
 <body>
     <section class="login-container">
-        <div class="background-img"></div>
+        
         <div class="login-form">
             <h3 class="form-title">Login</h3>
             <form id="loginForm">
