@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.login-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.background-img {
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    width: 100vw;    
+    height: 100vh;
+    min-width: 100vh;
+    background-image: url('img9.jpg'); /* Add your image path here */
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center;   
+    opacity: 5; /* Adjust the opacity as needed */
+    z-index: -5;
+}
+
+.login-form {
+    /* background-color: #9ec3da; */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.form-title {
+    text-align: center;
+    color: #fffafa;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.label {
+    /* font-weight: bold; */
+    color: #fff8f8;
+}
+
+.input-group {
+    position: relative;
+}
+
+.form-control {
+    width: 97%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #333;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success {
+    background-color: #918989;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #9c9191;
+    color: #fff;
+}
+
+.forgot-password-link,
+.signup-link {
+    color:white;
+    text-decoration: none;
+}
+
+.forgot-password-link:hover,
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+.signup-text {
+    text-align: center;
+    color:white;
+}
