@@ -28,9 +28,7 @@
 
         .lab {
             font-weight: bolder;
-
         }
-
         .card-title1  {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-weight: bolder;
