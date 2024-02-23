@@ -1,0 +1,203 @@
+
+
+-- Create Database
+CREATE DATABASE shopflix;
+
+-- Use Database
+USE shopflix;
+
+-- Users Table
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'vendor', 'user') NOT NULL,
+    registration_date DATETIME NOT NULL,
+    last_login DATETIME,
+    address VARCHAR(255),
+    phone_number VARCHAR(20),
+    is_verified BOOLEAN DEFAULT FALSE
+);
+
+-- Product Categories Table
+CREATE TABLE product_categories (
+    category_id INT PRIMARY KEY AUTO_INCREMENT,
+    category_name VARCHAR(50) NOT NULL,
+    category_description TEXT
+);
+
+-- Products Table
+CREATE TABLE products (
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    category_id INT,
+    vendor_id INT,
+    product_name VARCHAR(100) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    stock_quantity INT NOT NULL,
+    is_featured BOOLEAN DEFAULT FALSE,
+    creation_date DATETIME NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES product_categories(category_id),
+    FOREIGN KEY (vendor_id) REFERENCES users(user_id)
+);
+
+-- Product Images Table
+CREATE TABLE product_images (
+    image_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT,
+    image_url VARCHAR(255) NOT NULL,
+    PRIMARY KEY (image_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Product Reviews Table
+CREATE TABLE product_reviews (
+    review_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT,
+    user_id INT,
+    rating INT NOT NULL,
+    comment TEXT,
+    review_date DATETIME NOT NULL,
+    PRIMARY KEY (review_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Product Comments Table
+CREATE TABLE product_comments (
+    comment_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT,
+    user_id INT,
+    comment_text TEXT,
+    comment_date DATETIME NOT NULL,
+    PRIMARY KEY (comment_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Cart Table
+CREATE TABLE carts (
+    cart_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    product_id INT,
+    quantity INT NOT NULL,
+    added_to_cart_date DATETIME NOT NULL,
+    PRIMARY KEY (cart_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Email Verification Table
+CREATE TABLE email_verification (
+    verification_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    verification_code VARCHAR(10) NOT NULL,
+    expiration_date DATETIME NOT NULL,
+    is_verified BOOLEAN DEFAULT FALSE,
+    PRIMARY KEY (verification_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Admins Table
+CREATE TABLE admins (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT UNIQUE,
+    position VARCHAR(50),
+    office_location VARCHAR(100),
+    hire_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Users Table (Extended)
+CREATE TABLE regular_users (
+    user_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    date_of_birth DATE,
+    gender ENUM('male', 'female', 'other'),
+    PRIMARY KEY (user_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Vendors Table
+CREATE TABLE vendors (
+    vendor_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT UNIQUE,
+    company_name VARCHAR(100),
+    business_type VARCHAR(50),
+    registration_date DATE,
+    PRIMARY KEY (vendor_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Vendor Products Table
+CREATE TABLE vendor_products (
+    vendor_product_id INT PRIMARY KEY AUTO_INCREMENT,
+    vendor_id INT,
+    product_id INT,
+    is_approved BOOLEAN DEFAULT FALSE,
+    submission_date DATETIME NOT NULL,
+    PRIMARY KEY (vendor_product_id),
+    FOREIGN KEY (vendor_id) REFERENCES vendors(vendor_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Flight Providers Table
+CREATE TABLE flight_providers (
+    provider_id INT PRIMARY KEY AUTO_INCREMENT,
+    provider_name VARCHAR(100) NOT NULL,
+    contact_email VARCHAR(100) NOT NULL,
+    contact_phone VARCHAR(20) NOT NULL,
+    website_url VARCHAR(255),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Flight Bookings Table
+CREATE TABLE flight_bookings (
+    booking_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    flight_provider_id INT,
+    departure_city VARCHAR(50) NOT NULL,
+    destination_city VARCHAR(50) NOT NULL,
+    departure_date DATE NOT NULL,
+    return_date DATE,
+    total_passengers INT NOT NULL,
+    total_cost DECIMAL(10, 2) NOT NULL,
+    booking_status ENUM('pending', 'confirmed', 'canceled') NOT NULL,
+    booking_date DATETIME NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (booking_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (flight_provider_id) REFERENCES flight_providers(provider_id)
+);
+
+-- Flight Passengers Table
+CREATE TABLE flight_passengers (
+    passenger_id INT PRIMARY KEY AUTO_INCREMENT,
+    booking_id INT,
+    passenger_name VARCHAR(100) NOT NULL,
+    passport_number VARCHAR(20) NOT NULL,
+    date_of_birth DATE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (passenger_id),
+    FOREIGN KEY (booking_id) REFERENCES flight_bookings(booking_id)
+);
+
+-- Flight Reviews Table
+CREATE TABLE flight_reviews (
+    review_id INT PRIMARY KEY AUTO_INCREMENT,
+    booking_id INT,
+    user_id INT,
+    rating INT NOT NULL,
+    comment TEXT,
+    review_date DATETIME NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (review_id),
+    FOREIGN KEY (booking_id) REFERENCES flight_bookings(booking_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
