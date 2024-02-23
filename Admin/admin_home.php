@@ -16,7 +16,6 @@
 <body>
    
 <?php include('./include/navbar.php'); ?>
-
     <!-- main content -->
     <section class="main" style="padding-left:120px; margin:20px">
         <div class="container mt-5 main-content">

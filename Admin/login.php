@@ -111,13 +111,15 @@ if(isset($_POST['login'])) {
                             <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password" name="password" required>
                         </div>
                         <div class="input-group mb-5 d-flex justify-content-between">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="formCheck">
-                                <label for="formCheck" class="form-check-label text-secondary"><small>Remember Me</small></label>
+                        <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-lg bg-light fs-6" id="captcha" name="captcha" placeholder="Captcha" required>
+                            <div class="input-group-append">
+                                <img src="/shopflix/Admin/include/captcha.php?rand=<?php echo uniqid(); ?>" alt="CAPTCHA" id="captcha_image" />
+                                <button class="btn btn-outline-secondary" type="button" id="refresh_captcha">Refresh</button>
                             </div>
-                            <div class="forgot">
-                                <small><a href="#">Forgot Password?</a></small>
-                            </div>
+                        </div>
+                    </div>
                         </div>
                         <div class="input-group mb-3">
                             <button ype="submit" name="login" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
@@ -127,6 +129,11 @@ if(isset($_POST['login'])) {
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('refresh_captcha').addEventListener('click', function() {
+            document.getElementById('captcha_image').src = '/shopflix/Admin/include/captcha.php?rand=' + new Date().getTime();
+        });
+    </script>
 </body>
 
 </html>
