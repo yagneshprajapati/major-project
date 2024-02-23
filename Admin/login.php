@@ -95,7 +95,7 @@ if(isset($_POST['login'])) {
                     <img src="../img/login.png" class="img-fluid" style="width: 250px;">
                 </div>
                 <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">SHOPFLIX</p>
-                <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Join experienced Designers on this platform.</small>
+                <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;">Security is not a Product, But a Process.</small>
             </div>
             <div class="col-md-6 right-box" id="right-box">
                 <div class="row align-items-center">

@@ -15,8 +15,6 @@
 
 <body>
    
-
-  
 <?php include('./include/navbar.php'); ?>
 
     <!-- main content -->
