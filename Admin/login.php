@@ -1,34 +1,3 @@
-<?php
-include '/wamp64/www/shopflix/Admin/connection.php';
-session_start();
-
-if(isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Query to retrieve password based on username
-    $sql = "SELECT admin_password FROM admin WHERE admin_name = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $stmt->bind_result($stored_password);
-    $stmt->fetch();
-    $stmt->close();
-
-    // Verify password
-    if($password === $stored_password) { // Direct comparison without hashing
-        // Password is correct, set session variables
-        $_SESSION["loggedin"] = true;
-        $_SESSION["username"] = $username;
-        header("Location: admin_home.php");
-        exit();
-    } else {
-        // Password is incorrect, display error message
-        echo '<div class="alert alert-danger" role="alert">Invalid username or password!</div>';
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,6 +7,7 @@ if(isset($_POST['login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="Admin/style/login.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <title>Shopflix Login |</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
@@ -111,20 +81,23 @@ if(isset($_POST['login'])) {
                             <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password" name="password" required>
                         </div>
                         <div class="input-group mb-5 d-flex justify-content-between">
-                        <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" id="captcha" name="captcha" placeholder="Captcha" required>
-                            <div class="input-group-append">
-                                <img src="/shopflix/Admin/include/captcha.php?rand=<?php echo uniqid(); ?>" alt="CAPTCHA" id="captcha_image" />
-                                <button class="btn btn-outline-secondary" type="button" id="refresh_captcha">Refresh</button>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-lg bg-light fs-6" id="captcha" name="captcha" placeholder="Captcha" required>
+                                    <div class="input-group-append">
+                                        <img src="/shopflix/Admin/include/captcha.php?rand=<?php echo uniqid(); ?>" alt="CAPTCHA" id="captcha_image" />
+                                        <button class="btn btn-outline-secondary" type="button" id="refresh_captcha">
+                                            <i class="fas fa-sync-alt"></i> <!-- Refresh icon -->
+                                            Refresh
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                        </div>
                         <div class="input-group mb-3">
-                            <button ype="submit" name="login" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
+                            <button type="submit" name="login" class="btn btn-lg btn-primary w-100 fs-6">Login</button>
                         </div>
-                        </form>  
+                    </form>
                 </div>
             </div>
         </div>
