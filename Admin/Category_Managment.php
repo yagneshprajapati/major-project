@@ -101,20 +101,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       border-collapse: collapse;
       margin-top: 20px;
     }
-
-    table,
-    th,
-    td {
+    table,th,td {
       border: 1px solid #ccc;
     }
-
-    th,
-    td {
+     th,td {
       padding: 10px;
       text-align: left;
     }
-
-    /* Modal styles */
     .modal-header {
       background-color: #333;
       color: white;
@@ -155,6 +148,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     .alert {
       margin-top: 20px;
     }
+
+    /* Optional: Style for the delete confirmation dialog */
     .confirm-dialog {
       text-align: center;
       padding: 20px;
@@ -295,6 +290,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     </table>
   </div>
   <hr>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
