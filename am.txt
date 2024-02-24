@@ -10,6 +10,7 @@ CREATE TABLE users (
     is_verified BOOLEAN DEFAULT FALSE
 );
 
+
 -- Airport Table
 CREATE TABLE Airport (
     AirportID INT PRIMARY KEY AUTO_INCREMENT,

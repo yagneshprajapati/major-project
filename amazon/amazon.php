@@ -88,7 +88,7 @@
                 <li class="border-white"><a href="#">Electronic</a></li>
                 <li class="border-white"><a href="#">Gym Eqipment</a></li>
                 <li class="border-white"><a href="#">Furniture</a></li>
-                <li class="border-white"><a href="https://www.skyscanner.co.in">Flight Booking</a></li>
+                <li class="border-white"><a href="../air">Flight Booking</a></li>
                 <li class="border-white"><a href="#">About Us</a></li>
                 <li class="border-white prime-image-hover">
                     <!-- <a href="#">Prime</a>
