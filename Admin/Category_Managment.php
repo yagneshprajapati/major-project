@@ -155,8 +155,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     .alert {
       margin-top: 20px;
     }
-
-    /* Optional: Style for the delete confirmation dialog */
     .confirm-dialog {
       text-align: center;
       padding: 20px;
@@ -277,23 +275,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         <?php 
           $sql = "SELECT * FROM `add_category`"; 
           $result = mysqli_query($conn, $sql);
-          $category_id = 0;
-          while($row = mysqli_fetch_assoc($result)){
-            $category_id = $category_id + 1;
-            echo "<tr>
-            <th scope='row'>". $category_id . "</th>
-            <td>". $row['category_name'] . "</td>
-            <td>". $row['sub_category'] . "</td>
-            <td> <button class='edit btn btn-sm btn-primary' id=".$row['category_id'].">Edit</button> <button class='delete btn btn-sm btn-primary' id=d".$row['category_id'].">Delete</button>  </td>
-          </tr>";
-        } 
+
+          if(!$result) {
+              echo "Error: " . mysqli_error($conn);
+          } else {
+              $category_id = 0;
+              while($row = mysqli_fetch_assoc($result)){
+                $category_id = $category_id + 1;
+                echo "<tr>
+                <th scope='row'>". $category_id . "</th>
+                <td>". $row['category_name'] . "</td>
+                <td>". $row['sub_category'] . "</td>
+                <td> <button class='edit btn btn-sm btn-primary' id=".$row['category_id'].">Edit</button> <button class='delete btn btn-sm btn-primary' id=d".$row['category_id'].">Delete</button>  </td>
+              </tr>";
+            }
+          }
         ?>
       </tbody>
     </table>
   </div>
   <hr>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
