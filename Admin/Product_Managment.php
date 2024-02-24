@@ -40,12 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $prod_img2 = $_FILES["prod_img2Edit"]["name"];
     $prod_img3 = $_FILES["prod_img3Edit"]["name"];
     $prod_rating = $_POST["prod_ratingEdit"];
+    $category_name = $_POST["category_nameEdit"];
+    $sub_category = $_POST["sub_categoryEdit"];
 
     move_uploaded_file($_FILES["prod_img1Edit"]["tmp_name"], $target_dir . $prod_img1);
     move_uploaded_file($_FILES["prod_img2Edit"]["tmp_name"], $target_dir . $prod_img2);
     move_uploaded_file($_FILES["prod_img3Edit"]["tmp_name"], $target_dir . $prod_img3);
 
-    $sql = "UPDATE `products` SET `prod_name` = '$prod_name', `prod_price` = '$prod_price', `prod_des` = '$prod_des', `prod_img1` = '$prod_img1', `prod_img2` = '$prod_img2', `prod_img3` = '$prod_img3',`prod_rating` = '$prod_rating' WHERE `products`.`prod_id` = $prod_id";
+    $sql = "UPDATE `products` SET `prod_name` = '$prod_name', `prod_price` = '$prod_price', `prod_des` = '$prod_des', `prod_img1` = '$prod_img1', `prod_img2` = '$prod_img2', `prod_img3` = '$prod_img3', `prod_rating` = '$prod_rating', `category_name` = '$category_name', `sub_category` = '$sub_category' WHERE `products`.`prod_id` = $prod_id";
     $result = mysqli_query($conn, $sql);
 
     if($result){
@@ -62,12 +64,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $prod_img2 = $_FILES["prod_img2"]["name"];
     $prod_img3 = $_FILES["prod_img3"]["name"];
     $prod_rating = $_POST["prod_rating"];
+    $category_name = $_POST["category_name"];
+    $sub_category = $_POST["sub_category"];
 
     move_uploaded_file($_FILES["prod_img1"]["tmp_name"], $target_dir . $prod_img1);
     move_uploaded_file($_FILES["prod_img2"]["tmp_name"], $target_dir . $prod_img2);
     move_uploaded_file($_FILES["prod_img3"]["tmp_name"], $target_dir . $prod_img3);
 
-    $sql = "INSERT INTO `products` (`prod_name`, `prod_price`, `prod_des`, `prod_img1`, `prod_img2`, `prod_img3`,`prod_rating`) VALUES ('$prod_name', '$prod_price', '$prod_des', '$prod_img1', '$prod_img2','$prod_img3','$prod_rating')";
+    $sql = "INSERT INTO `products` (`prod_name`, `prod_price`, `prod_des`, `prod_img1`, `prod_img2`, `prod_img3`, `prod_rating`, `category_name`, `sub_category`) VALUES ('$prod_name', '$prod_price', '$prod_des', '$prod_img1', '$prod_img2', '$prod_img3', '$prod_rating', '$category_name', '$sub_category')";
     $result = mysqli_query($conn, $sql);
 
     if($result){ 
@@ -178,6 +182,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
               <label for="prod_ratingEdit">Prating</label>
               <input type="text" class="form-control" id="prod_ratingEdit" name="prod_ratingEdit">
             </div>
+
+            <!-- New fields for category_name and sub_category -->
+            <div class="form-group">
+              <label for="category_nameEdit">Category Name</label>
+              <select class="form-control" id="category_nameEdit" name="category_nameEdit">
+                  <?php
+                      // Fetch category names from the add_category table
+                      $sql = "SELECT DISTINCT category_name FROM add_category";
+                      $result = mysqli_query($conn, $sql);
+                      while($row = mysqli_fetch_assoc($result)) {
+                          echo "<option value='" . $row['category_name'] . "'>" . $row['category_name'] . "</option>";
+                      }
+                  ?>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="sub_categoryEdit">Sub Category</label>
+              <select class="form-control" id="sub_categoryEdit" name="sub_categoryEdit">
+                  <?php
+                      // Fetch sub-categories from the add_category table
+                      $sql = "SELECT DISTINCT sub_category FROM add_category";
+                      $result = mysqli_query($conn, $sql);
+                      while($row = mysqli_fetch_assoc($result)) {
+                          echo "<option value='" . $row['sub_category'] . "'>" . $row['sub_category'] . "</option>";
+                      }
+                  ?>
+              </select>
+            </div>
           </div>
           <div class="modal-footer d-block mr-auto">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -253,6 +286,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         <input type="text" class="form-control" id="prod_rating" name="prod_rating">
       </div>
 
+      <!-- New fields for category_name and sub_category -->
+      <div class="form-group">
+        <label for="category_name">Category Name</label>
+        <select class="form-control" id="category_name" name="category_name">
+            <?php
+                // Fetch category names from the add_category table
+                $sql = "SELECT DISTINCT category_name FROM add_category";
+                $result = mysqli_query($conn, $sql);
+                while($row = mysqli_fetch_assoc($result)) {
+                    echo "<option value='" . $row['category_name'] . "'>" . $row['category_name'] . "</option>";
+                }
+            ?>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="sub_category">Sub Category</label>
+        <select class="form-control" id="sub_category" name="sub_category">
+            <?php
+                // Fetch sub-categories from the add_category table
+                $sql = "SELECT DISTINCT sub_category FROM add_category";
+                $result = mysqli_query($conn, $sql);
+                while($row = mysqli_fetch_assoc($result)) {
+                    echo "<option value='" . $row['sub_category'] . "'>" . $row['sub_category'] . "</option>";
+                }
+            ?>
+        </select>
+      </div>
+
       <button type="submit" class="btn btn-primary">Add Product</button>
     </form>
   </div>
@@ -270,6 +332,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
           <th scope="col">prod_img2</th>
           <th scope="col">prod_img3</th>
           <th scope="col">prod_rating</th>
+          <th scope="col">category_name</th>
+          <th scope="col">sub_category</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -289,6 +353,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             <td><img src='uploads/{$row['prod_img2']}'  alt='{$row['prod_img2']}' width='100'></td>
             <td><img src='uploads/{$row['prod_img3']}'  alt='{$row['prod_img3']}' width='100'></td>
             <td>". $row['prod_rating'] . "</td>
+            <td>". $row['category_name'] . "</td>
+            <td>". $row['sub_category'] . "</td>
             <td> <button class='edit btn btn-sm btn-primary' id='{$row['prod_id']}'>Edit</button> <button class='delete btn btn-sm btn-primary' id='d{$row['prod_id']}'>Delete</button>  </td>
           </tr>";
         } 
@@ -321,6 +387,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         prod_img2 = tr.getElementsByTagName("td")[4].innerText;
         prod_img3 = tr.getElementsByTagName("td")[5].innerText;
         prod_rating = tr.getElementsByTagName("td")[6].innerText;
+        category_name = tr.getElementsByTagName("td")[7].innerText;
+        sub_category = tr.getElementsByTagName("td")[8].innerText;
 
         document.getElementById("prod_nameEdit").value = prod_name;
         document.getElementById("prod_priceEdit").value = prod_price;
@@ -329,6 +397,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         document.getElementById("prod_img2Edit").value = prod_img2;
         document.getElementById("prod_img3Edit").value = prod_img3;
         document.getElementById("prod_ratingEdit").value = prod_rating;
+        document.getElementById("category_nameEdit").value = category_name;
+        document.getElementById("sub_categoryEdit").value = sub_category;
         document.getElementById("prod_idEdit").value = e.target.id;
         $('#editModal').modal('toggle');
       })

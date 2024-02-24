@@ -6,10 +6,12 @@ $delete = false;
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "shopflixdb"; 
+$database = "shopflixdb"; // Change the database name to "shopflixdb"
 
+// Create a connection
 $conn = mysqli_connect($servername, $username, $password, $database);
 
+// Die if connection was not successful
 if (!$conn){
     die("Sorry we failed to connect: ". mysqli_connect_error());
 }
@@ -39,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $category_name = $_POST["category_name"];
     $sub_category = $_POST["sub_category"];
 
-    $sql = "INSERT INTO `add_category` (`category_name`, `sub_category`) VALUES ('$category_name','$sub_category')";
+    $sql = "INSERT INTO `add_category` (`category_name`, `sub_category`) VALUES ('$category_name', '$sub_category')";
     $result = mysqli_query($conn, $sql);
 
     if($result){ 
@@ -51,17 +53,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Adding Category</title>
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- DataTables CSS -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+  <title>Adding Category</title>
   <style>
     /* Reset some default styles for better consistency */
     * {
@@ -179,18 +183,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
   </style>
 </head>
+
 <body>
+
   <!-- Edit Modal -->
-  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="editModalLabel">Edit this Category</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">×</span>
           </button>
         </div>
-        <form action="/shopflix/Admin/Add_Management.php" method="POST" enctype="multipart/form-data">
+        <form action="/shopflix/Admin/Category_Management.php" method="POST" enctype="multipart/form-data">
           <div class="modal-body">
             <input type="hidden" name="category_idEdit" id="category_idEdit">
             <div class="form-group">
@@ -202,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
               <input type="text" class="form-control" id="sub_categoryEdit" name="sub_categoryEdit">
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer d-block mr-auto">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Save changes</button>
           </div>
@@ -216,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
     <strong>Success!</strong> Your record has been inserted successfully
     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-      <span aria-hidden='true'>&times;</span>
+      <span aria-hidden='true'>×</span>
     </button>
   </div>";
   }
@@ -226,7 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
     <strong>Success!</strong> Your record has been deleted successfully
     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-      <span aria-hidden='true'>&times;</span>
+      <span aria-hidden='true'>×</span>
     </button>
   </div>";
   }
@@ -236,14 +243,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
     <strong>Success!</strong> Your record has been updated successfully
     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-      <span aria-hidden='true'>&times;</span>
+      <span aria-hidden='true'>×</span>
     </button>
   </div>";
   }
   ?>
   <div class="container my-4">
     <h2>Adding Category</h2>
-    <form action="/shopflix/Admin/CAtegory_Management.php" method="POST" enctype="multipart/form-data">
+    <form action="/shopflix/Admin/Category_Managment.php" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label for="category_name">Category Name</label>
         <input type="text" class="form-control" id="category_name" name="category_name" aria-describedby="emailHelp">
@@ -268,7 +275,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       </thead>
       <tbody>
         <?php 
-          $sql = "SELECT * FROM `add_category`";
+          $sql = "SELECT * FROM `add_category`"; 
           $result = mysqli_query($conn, $sql);
           $category_id = 0;
           while($row = mysqli_fetch_assoc($result)){
@@ -287,39 +294,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   <hr>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shCv2GQpiRxpXnE2r4+oW5ta59clhXQFsfDtc" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
     $(document).ready(function () {
       $('#myTable').DataTable();
-      
-      $('.edit').click(function() {
-        tr = $(this).closest('tr');
-        var data = tr.children("td").map(function() {
-          return $(this).text();
-        }).get();
-        console.log(data);
-        $('#category_idEdit').val(data[0]);
-        $('#category_nameEdit').val(data[1]);
-        $('#sub_categoryEdit').val(data[2]);
-        $('#editModal').modal('show');
-      });
-      
-      $('.delete').click(function() {
-        tr = $(this).closest('tr');
-        var data = tr.children("td").map(function() {
-          return $(this).text();
-        }).get();
-        console.log(data);
-        var del = confirm("Are you sure you want to delete this record?");
-        if (del == true) {
-          window.location = '/shopflix/Admin/Category_Management.php?delete='+data[0];
-        }
-      });
     });
+
+    edits = document.getElementsByClassName('edit');
+    Array.from(edits).forEach((element) => {
+      element.addEventListener("click", (e) => {
+        tr = e.target.parentNode.parentNode;
+        category_name = tr.getElementsByTagName("td")[0].innerText;
+        sub_category = tr.getElementsByTagName("td")[1].innerText;
+        category_idEdit.value = e.target.id;
+        category_nameEdit.value = category_name;
+        sub_categoryEdit.value = sub_category;
+        $('#editModal').modal('toggle');
+      })
+    })
+
+    deletes = document.getElementsByClassName('delete');
+    Array.from(deletes).forEach((element) => {
+      element.addEventListener("click", (e) => {
+        category_id = e.target.id.substr(1);
+
+        if (confirm("Are you sure you want to delete this record!")) {
+          window.location = `/shopflix/Admin/Product_Management.php?delete=${category_id}`;
+        }
+      })
+    })
   </script>
 </body>
+
 </html>
