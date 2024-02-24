@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 -- Create Database
 CREATE DATABASE shopflix;
 
@@ -20,6 +24,7 @@ CREATE TABLE users (
 CREATE TABLE product_categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(50) NOT NULL,
+    
     category_description TEXT
 );
 
