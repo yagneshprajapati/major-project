@@ -58,14 +58,12 @@
                 <label for="city">City:</label>
                 <select class="form-control" id="city" name="city" required onchange="populateAirportFields(this.value)">
                     <option value="">Select City</option>
-                    <!-- Cities will be populated dynamically based on the selected state -->
                 </select>
             </div>
             <div class="form-group" id="airportNameField" style="display:none;">
                 <label for="airportName">Airport Name:</label>
                 <select class="form-control" id="airportName" name="airportName" required>
                     <option value="">Select Airport Name</option>
-                    <!-- Airport names will be populated dynamically based on the selected city -->
                 </select>
             </div>
             <div class="form-group" id="airportCodeField" style="display:none;">
@@ -79,7 +77,6 @@
                 <label for="location">Location:</label>
                 <select class="form-control" id="location" name="location" required>
                     <option value="">Select Location</option>
-                    <!-- Locations will be populated dynamically based on the selected city -->
                 </select>
             </div>
             <button type="submit" class="btn btn-primary" name="submit">Add Airport</button>
@@ -99,7 +96,6 @@
             </thead>
             <tbody>
                 <?php
-                // Fetch airports
                 $result = mysqli_query($conn, "SELECT * FROM airport");
                 if ($result) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -155,7 +151,6 @@
                 default:
                     cities = [];
             }
-
             var cityDropdown = document.getElementById("city");
             cityDropdown.innerHTML = ""; // Clear previous options
             cities.forEach(function(city) {
