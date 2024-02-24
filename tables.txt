@@ -1,0 +1,328 @@
+-- Table for Users
+
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20),
+    gender VARCHAR(10), 
+    confirmed_email BOOLEAN NOT NULL DEFAULT false,
+    profile_pic_url VARCHAR(255), 
+    address_line1 VARCHAR(255),
+    address_line2 VARCHAR(255),
+    city VARCHAR(50),
+    state VARCHAR(50),
+    country VARCHAR(50),
+    pincode VARCHAR(50)
+);
+
+
+-- Table for Admins
+
+CREATE TABLE admins (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+
+-- Table for Vendors
+
+
+CREATE TABLE vendors (
+    vendor_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    confirmed_email BOOLEAN NOT NULL DEFAULT false,
+    company_name VARCHAR(100),  
+    contact_person VARCHAR(100), 
+    phone_number VARCHAR(20),  
+    website_url VARCHAR(255),  
+    profile_pic_url VARCHAR(255),  
+    address_line1 VARCHAR(255),
+    address_line2 VARCHAR(255),
+    city VARCHAR(50),
+    state VARCHAR(50),
+    country VARCHAR(50)
+);
+
+-- Table for Airline Admins
+
+CREATE TABLE airline_admins (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    confirmed_email BOOLEAN NOT NULL DEFAULT false,
+    airline_id INT NOT NULL,
+    profile_pic_url VARCHAR(255),
+    address_line1 VARCHAR(255),
+    address_line2 VARCHAR(255),
+    city VARCHAR(50),
+    state VARCHAR(50),
+    country VARCHAR(50)
+);
+
+
+-- Table for Notifications
+CREATE TABLE notifications (
+    notification_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    message TEXT NOT NULL,
+    is_read BOOLEAN NOT NULL DEFAULT false,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Table for Wishlists
+CREATE TABLE wishlists (
+    wishlist_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+
+
+
+-- Table for Users
+
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20),
+    gender VARCHAR(10), 
+    confirmed_email BOOLEAN NOT NULL DEFAULT false,
+    profile_pic_url VARCHAR(255), 
+    address_line1 VARCHAR(255),
+    address_line2 VARCHAR(255),
+    city VARCHAR(50),
+    state VARCHAR(50),
+    country VARCHAR(50),
+    pincode VARCHAR(50)
+);
+
+
+-- Table for Admins
+
+CREATE TABLE admins (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+
+-- Table for Vendors
+
+
+CREATE TABLE vendors (
+    vendor_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    confirmed_email BOOLEAN NOT NULL DEFAULT false,
+    company_name VARCHAR(100),  
+    contact_person VARCHAR(100), 
+    phone_number VARCHAR(20),  
+    website_url VARCHAR(255),  
+    profile_pic_url VARCHAR(255),  
+    address_line1 VARCHAR(255),
+    address_line2 VARCHAR(255),
+    city VARCHAR(50),
+    state VARCHAR(50),
+    country VARCHAR(50)
+);
+
+-- Table for Airline Admins
+
+CREATE TABLE airline_admins (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    confirmed_email BOOLEAN NOT NULL DEFAULT false,
+    airline_id INT NOT NULL,
+    profile_pic_url VARCHAR(255),
+    address_line1 VARCHAR(255),
+    address_line2 VARCHAR(255),
+    city VARCHAR(50),
+    state VARCHAR(50),
+    country VARCHAR(50)
+);
+
+
+-- Table for Notifications
+CREATE TABLE notifications (
+    notification_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    message TEXT NOT NULL,
+    is_read BOOLEAN NOT NULL DEFAULT false,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Table for Wishlists
+CREATE TABLE wishlists (
+    wishlist_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+
+
+
+
+
+-- Table for Products
+CREATE TABLE products (
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    stock_quantity INT NOT NULL DEFAULT 0,
+    discount DECIMAL(5, 2) NOT NULL DEFAULT 0.00,
+    category_id INT,
+    subcategory_id INT,
+    FOREIGN KEY (category_id) REFERENCES categories(category_id),
+    FOREIGN KEY (subcategory_id) REFERENCES subcategories(subcategory_id)
+);
+
+-- Table for Product Images
+CREATE TABLE product_images (
+    image_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Table for Comments
+CREATE TABLE comments (
+    comment_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    comment TEXT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Table for Ratings
+CREATE TABLE ratings (
+    rating_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    rating DECIMAL(3, 2) NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+
+-- Table for Cart
+CREATE TABLE cart (
+    cart_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Table for Orders
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) NOT NULL,
+    payment_method VARCHAR(50) NOT NULL,
+    payment_status VARCHAR(20) NOT NULL,
+    transaction_id VARCHAR(100) UNIQUE,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Table for Order Items
+CREATE TABLE order_items (
+    order_item_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+
+-- Table for Book Demo
+CREATE TABLE book_demo (
+    demo_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    demo_date DATETIME NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+
+-- Table for Report Issue
+CREATE TABLE report_issue (
+    issue_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    description TEXT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Table for Airports
+CREATE TABLE airports (
+    airport_id INT PRIMARY KEY AUTO_INCREMENT,
+    code VARCHAR(10) NOT NULL,
+    name VARCHAR(100) NOT NULL
+);
+
+-- Table for Airlines
+CREATE TABLE airlines (
+    airline_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    home_airport_id INT NOT NULL,
+    FOREIGN KEY (home_airport_id) REFERENCES airports(airport_id)
+);
+
+-- Table for Flights
+CREATE TABLE flights (
+    flight_id INT PRIMARY KEY AUTO_INCREMENT,
+    airline_id INT NOT NULL,
+    departure_airport_id INT NOT NULL,
+    destination_airport_id INT NOT NULL,
+    departure_datetime DATETIME NOT NULL,
+    arrival_datetime DATETIME NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    available_seats INT NOT NULL,
+    flight_number VARCHAR(20) NOT NULL,
+    aircraft_type VARCHAR(50),
+    cabin_class VARCHAR(20),
+    meal_service BOOLEAN,
+    Wi-Fi_service BOOLEAN,
+    baggage_allowance VARCHAR(50),
+    ticket_booking_url VARCHAR(255), -- URL for users to book tickets
+    FOREIGN KEY (airline_id) REFERENCES airlines(airline_id),
+    FOREIGN KEY (departure_airport_id) REFERENCES airports(airport_id),
+    FOREIGN KEY (destination_airport_id) REFERENCES airports(airport_id)
+);
