@@ -61,32 +61,36 @@ if (isset($_GET['deleteSubCategory'])) {
 
 // Handle category form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addCategory'])) {
-    $categoryName = $_POST["categoryName"];
-    $sql = "INSERT INTO `category` (`category_name`, `parent_category_id`) VALUES (?, NULL)";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $categoryName);
-    $result = mysqli_stmt_execute($stmt);
+    if (isset($_POST["categoryName"])) {
+        $categoryName = $_POST["categoryName"];
+        $sql = "INSERT INTO `category` (`category_name`, `parent_category_id`) VALUES (?, NULL)";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $categoryName);
+        $result = mysqli_stmt_execute($stmt);
 
-    if ($result) {
-        $insertCategory = true;
-    } else {
-        echo "The category record was not inserted successfully because of this error ---> " . mysqli_error($conn);
+        if ($result) {
+            $insertCategory = true;
+        } else {
+            echo "The category record was not inserted successfully because of this error ---> " . mysqli_error($conn);
+        }
     }
 }
 
 // Handle subcategory form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addSubCategory'])) {
-    $subCategoryName = $_POST["subCategoryName"];
-    $parentCategoryID = $_POST["parentCategoryID"];
-    $sql = "INSERT INTO `category` (`category_name`, `parent_category_id`) VALUES (?, ?)";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "si", $subCategoryName, $parentCategoryID);
-    $result = mysqli_stmt_execute($stmt);
+    if (isset($_POST["subCategoryName"]) && isset($_POST["parentCategoryID"])) {
+        $subCategoryName = $_POST["subCategoryName"];
+        $parentCategoryID = $_POST["parentCategoryID"];
+        $sql = "INSERT INTO `category` (`category_name`, `parent_category_id`) VALUES (?, ?)";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "si", $subCategoryName, $parentCategoryID);
+        $result = mysqli_stmt_execute($stmt);
 
-    if ($result) {
-        $insertSubCategory = true;
-    } else {
-        echo "The subcategory record was not inserted successfully because of this error ---> " . mysqli_error($conn);
+        if ($result) {
+            $insertSubCategory = true;
+        } else {
+            echo "The subcategory record was not inserted successfully because of this error ---> " . mysqli_error($conn);
+        }
     }
 }
 ?>
@@ -327,7 +331,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addSubCategory'])) {
             edits.forEach((element) => {
                 element.addEventListener("click", (e) => {
                     const tr = e.target.parentNode.parentNode;
-                    const category_name = tr.getElementsByTagName("td")[0].innerText;
+                    const category_name = tr.getElementsByTagName("td")[1].innerText;
                     category_idEdit.value = e.target.id;
                     category_nameEdit.value = category_name;
                     // Assuming you have the edit modal with the id 'editModal'
