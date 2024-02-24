@@ -10,110 +10,115 @@
 
 <body>
     <?php include('./include/navbar.php'); ?>
-    <div class="container mt-5">
-        <h2>Airport Management System</h2>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="mt-5">
+                    <h2>Airport Management System</h2>
 
-        <?php
-        // Database connection
-        include("/wamp64/www/shopflix/Admin/connection.php");
+                    <?php
+                    // Database connection
+                    include("/wamp64/www/shopflix/Admin/connection.php");
 
-        // Insert airport
-        if (isset($_POST['submit'])) {
-            $airportName = $_POST['airportName'];
-            $airportCode = $_POST['airportCode'];
-            $state = $_POST['state'];
-            $city = $_POST['city'];
-            $location = $_POST['location'];
+                    // Insert airport
+                    if (isset($_POST['submit'])) {
+                        $airportName = $_POST['airportName'];
+                        $airportCode = $_POST['airportCode'];
+                        $state = $_POST['state'];
+                        $city = $_POST['city'];
+                        $location = $_POST['location'];
 
-            $sql = "INSERT INTO airport (AirportName, AirportCode, State, City, Location) VALUES ('$airportName', '$airportCode', '$state', '$city', '$location')";
-            mysqli_query($conn, $sql);
-        }
-
-        // Delete airport
-        if (isset($_GET['delete'])) {
-            $airportID = $_GET['delete'];
-            $sql = "DELETE FROM airport WHERE AirportID=$airportID";
-            mysqli_query($conn, $sql);
-        }
-        ?>
-
-        <form method="post" action="">
-            <div class="form-group">
-                <label for="state">State:</label>
-                <select class="form-control" id="state" name="state" required onchange="populateCities(this.value)">
-                    <option value="">Select State</option>
-                    <option value="Gujarat">Gujarat</option>
-                    <option value="Maharastra">Maharastra</option>
-                    <option value="Rajasthan">Rajasthan</option>
-                    <option value="UttarPradesh">UttarPradesh</option>
-                    <option value="West Bengal">West Bengal</option>
-                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="Tamil Nadu">Tamil Nadu</option>
-                    <option value="Karnataka">Karnataka</option>
-                    
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="city">City:</label>
-                <select class="form-control" id="city" name="city" required onchange="populateAirportFields(this.value)">
-                    <option value="">Select City</option>
-                </select>
-            </div>
-            <div class="form-group" id="airportNameField" style="display:none;">
-                <label for="airportName">Airport Name:</label>
-                <select class="form-control" id="airportName" name="airportName" required>
-                    <option value="">Select Airport Name</option>
-                </select>
-            </div>
-            <div class="form-group" id="airportCodeField" style="display:none;">
-                <label for="airportCode">Airport Code:</label>
-                <select class="form-control" id="airportCode" name="airportCode" required>
-                    <option value="">Select Airport Code</option>
-                    <!-- Airport codes will be populated dynamically based on the selected city -->
-                </select>
-            </div>
-            <div class="form-group" id="locationField" style="display:none;">
-                <label for="location">Location:</label>
-                <select class="form-control" id="location" name="location" required>
-                    <option value="">Select Location</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary" name="submit">Add Airport</button>
-        </form>
-
-        <h2 class="mt-5">Airports</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Airport Name</th>
-                    <th>Airport Code</th>
-                    <th>State</th>
-                    <th>City</th>
-                    <th>Location</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $result = mysqli_query($conn, "SELECT * FROM airport");
-                if ($result) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>" . $row['AirportName'] . "</td>";
-                        echo "<td>" . $row['AirportCode'] . "</td>";
-                        echo "<td>" . $row['State'] . "</td>";
-                        echo "<td>" . $row['City'] . "</td>";
-                        echo "<td>" . $row['Location'] . "</td>";
-                        echo "<td><a href='?delete=" . $row['AirportID'] . "' class='btn btn-danger'>Delete</a></td>";
-                        echo "</tr>";
+                        $sql = "INSERT INTO airport (AirportName, AirportCode, State, City, Location) VALUES ('$airportName', '$airportCode', '$state', '$city', '$location')";
+                        mysqli_query($conn, $sql);
                     }
-                } else {
-                    echo "Error: " . mysqli_error($conn);
-                }
-                ?>
-            </tbody>
-        </table>
+
+                    // Delete airport
+                    if (isset($_GET['delete'])) {
+                        $airportID = $_GET['delete'];
+                        $sql = "DELETE FROM airport WHERE AirportID=$airportID";
+                        mysqli_query($conn, $sql);
+                    }
+                    ?>
+
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <label for="state">State:</label>
+                            <select class="form-control" id="state" name="state" required onchange="populateCities(this.value)">
+                                <option value="">Select State</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Maharastra">Maharastra</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="UttarPradesh">UttarPradesh</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Karnataka">Karnataka</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City:</label>
+                            <select class="form-control" id="city" name="city" required onchange="populateAirportFields(this.value)">
+                                <option value="">Select City</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="airportNameField" style="display:none;">
+                            <label for="airportName">Airport Name:</label>
+                            <select class="form-control" id="airportName" name="airportName" required>
+                                <option value="">Select Airport Name</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="airportCodeField" style="display:none;">
+                            <label for="airportCode">Airport Code:</label>
+                            <select class="form-control" id="airportCode" name="airportCode" required>
+                                <option value="">Select Airport Code</option>
+                                <!-- Airport codes will be populated dynamically based on the selected city -->
+                            </select>
+                        </div>
+                        <div class="form-group" id="locationField" style="display:none;">
+                            <label for="location">Location:</label>
+                            <select class="form-control" id="location" name="location" required>
+                                <option value="">Select Location</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="submit">Add Airport</button>
+                    </form>
+
+                    <h2 class="mt-5">Airports</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Airport Name</th>
+                                <th>Airport Code</th>
+                                <th>State</th>
+                                <th>City</th>
+                                <th>Location</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $result = mysqli_query($conn, "SELECT * FROM airport");
+                            if ($result) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row['AirportName'] . "</td>";
+                                    echo "<td>" . $row['AirportCode'] . "</td>";
+                                    echo "<td>" . $row['State'] . "</td>";
+                                    echo "<td>" . $row['City'] . "</td>";
+                                    echo "<td>" . $row['Location'] . "</td>";
+                                    echo "<td><a href='?delete=" . $row['AirportID'] . "' class='btn btn-danger'>Delete</a></td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "Error: " . mysqli_error($conn);
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -121,31 +126,31 @@
             var cities = [];
             switch (selectedState) {
                 case "Gujarat":
-                    cities = ["Ahmedabad", "Surat", "Vadodara"];
+                    cities = ["---Select City---","Ahmedabad", "Surat", "Vadodara"];
                     break;
                 case "Maharastra":
-                    cities = ["Mumbai", "Pune", "Nagpur"];
+                    cities = ["---Select City---","Mumbai", "Pune", "Nagpur"];
                     break;
                 case "Rajasthan":
-                    cities = ["Jaipur", "Jodhpur", "Udaipur", ];
+                    cities = ["---Select City---","Jaipur", "Udaipur"];
                     break;
                 case "UttarPradesh":
-                    cities = ["Lucknow", "Kanpur", "Varanasi"];
+                    cities = ["---Select City---","Lucknow", "Kanpur", "Varanasi"];
                     break;
                 case "West Bengal":
-                    cities = ["Kolkata", "Durgapur", "Siliguri"];
+                    cities = ["---Select City---","Kolkata", "Durgapur", "Siliguri"];
                     break;
                 case "Madhya Pradesh":
-                    cities = ["Bhopal", "Indore"];
+                    cities = ["---Select City---","Bhopal", "Indore"];
                     break;
                 case "Punjab":
-                    cities = ["Amritsar", "Chandigarh"];
+                    cities = ["---Select City---","Amritsar", "Chandigarh"];
                     break;
                 case "Tamil Nadu":
-                    cities = ["Chennai", "Coimbatore"];
+                    cities = ["---Select City---","Chennai", "Coimbatore"];
                     break;
                 case "Karnataka":
-                    cities = ["Bengaluru", "Mangalore", "Mysore"];
+                    cities = ["--Select City---","Bengaluru", "Mangalore", "Mysore"];
                     break;
                     // Add cases for other states as needed
                 default:
@@ -203,11 +208,6 @@
                     airportCodes = ["JAI"];
                     locations = ["Airport Rd, Sanganer, Jaipur, Rajasthan"];
                     break;
-                case "Jodhapur":
-                    airportNames = ["Jodhpur Airport"];
-                    airportCodes = ["JDH"];
-                    locations = [" Civil Airport Road, Air Force Area, Ratanada, Jodhpur"];
-                    break;
                 case "Udaipur":
                     airportNames = ["Maharana Pratap Airport"];
                     airportCodes = ["UDR"];
@@ -230,8 +230,8 @@
                     break;
                 case "Kolkata":
                     airportNames = ["Netaji Subhash Chandra Bose International Airport"];
-                    airportCodes = ["Jessore Rd, Dum Dum, Kolkata, West Bengal"];
-                    locations = ["CCU"];
+                    airportCodes = ["CCU"];
+                    locations = ["Jessore Rd, Dum Dum, Kolkata, West Bengal"];
                     break;
                 case "Durgapur":
                     airportNames = ["Kazi Nazrul Islam Airport"];
@@ -243,7 +243,7 @@
                     airportCodes = ["IXB"];
                     locations = ["M8PG+25X, Distt. Darjeeling Siliguri, Bagdogra, West Bengal "];
                     break;
-    
+
                 case "Amristar":
                     airportNames = ["Sri Guru Ram Dass Jee International Airport"];
                     airportCodes = ["ATQ"];
@@ -266,8 +266,8 @@
                     break;
                 case "Bengaluru":
                     airportNames = ["Kempegowda International Airport,"];
-                    airportCodes = ["KIAL Rd, Devanahalli, Bengaluru, Karnataka 560300"];
-                    locations = ["BLR"];
+                    airportCodes = ["BLR"];
+                    locations = ["KIAL Rd, Devanahalli, Bengaluru, Karnataka 560300"];
                     break;
                 case "Mangalore":
                     airportNames = ["Mangaluru International Airport"];
@@ -297,7 +297,7 @@
             airportNames.forEach(function(airportName, index) {
                 var nameOption = document.createElement("option");
                 nameOption.text = airportName;
-                nameOption.value = airportCodes[index]; // Assuming the value is the airport code
+                nameOption.value = airportName; // Corrected to display airport name
                 airportNameDropdown.add(nameOption);
 
                 var codeOption = document.createElement("option");
