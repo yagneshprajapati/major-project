@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/4/4a/Amazon_icon.svg" /> 
-     <title>Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in</title>
+    <!-- <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/4/4a/Amazon_icon.svg" />  -->
+     <title>ShopFlix.in</title>
 
     <!--css file-->
     <link rel="stylesheet" href="style.css" />
@@ -84,12 +84,12 @@
                 </li>
                 <li class="border-white"><a href="#">Best Sellers</a></li>
                 <li class="border-white"><a href="#">Today's Deals</a></li>
-                <li class="border-white"><a href="#">About Us</a></li>
                 <li class="border-white"><a href="#">Customer Service</a></li>
                 <li class="border-white"><a href="#">Electronic</a></li>
-                <li class="border-white"><a href="#">Mini TV</a></li>
                 <li class="border-white"><a href="#">Gym Eqipment</a></li>
                 <li class="border-white"><a href="#">Furniture</a></li>
+                <li class="border-white"><a href="https://www.skyscanner.co.in">Flight Booking</a></li>
+                <li class="border-white"><a href="#">About Us</a></li>
                 <li class="border-white prime-image-hover">
                     <!-- <a href="#">Prime</a>
                     <div class="prime-image">
@@ -106,7 +106,7 @@
         </div>
     </nav>
  
-    sidebar navigation
+    <!-- sidebar navigation -->
     <div class="sidebar-container-navigation" id="sidebar-container-navigation-id">
         <div class="sidebar-left-part">
             <div class="sidebar-top">
@@ -160,7 +160,7 @@
 
 
 
-    image slider
+    <!-- image slider -->
     <section>
         <div class="image-container">
             <div class="image-list">
