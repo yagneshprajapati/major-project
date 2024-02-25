@@ -291,20 +291,23 @@ CREATE TABLE report_issue (
 );
 
 -- Table for Airports
-CREATE TABLE airports (
-    airport_id INT PRIMARY KEY AUTO_INCREMENT,
-    code VARCHAR(10) NOT NULL,
-    name VARCHAR(100) NOT NULL
+CREATE TABLE Airport (
+    AirportID INT PRIMARY KEY AUTO_INCREMENT,
+    AirportName VARCHAR(255) NOT NULL,
+    AirportCode CHAR(3) NOT NULL,
+    State VARCHAR(255) NOT NULL,
+    City VARCHAR(100) NOT NULL,
+    Location VARCHAR(100) NOT NULL
 );
 
 -- Table for Airlines
-CREATE TABLE airlines (
-    airline_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    home_airport_id INT NOT NULL,
-    FOREIGN KEY (Airport_id) REFERENCES airport(Airport_id)
+CREATE TABLE airline (
+  email char(40) NOT NULL,
+  pass char(40) DEFAULT NULL,
+  airline_name char(40) DEFAULT NULL,
+  logo char(40) DEFAULT NULL
 );
-
+ 
 -- Table for Flights
 CREATE TABLE flights (
     flight_id INT PRIMARY KEY AUTO_INCREMENT,
