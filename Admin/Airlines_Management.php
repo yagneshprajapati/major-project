@@ -12,18 +12,17 @@ if(isset($_POST["action"])) {
         // Handle file upload
         $logo = $_FILES["logo"]["name"];
         $logo_tmp = $_FILES["logo"]["tmp_name"];
-        $logo_path = "uploads/" . $logo; // Set your desired upload directory
+        $logo_path = "Admin/uploads/" . $logo; // Set your desired upload directory
         
-        // Move uploaded file to destination directory
-        move_uploaded_file($logo_tmp, $logo_path);
-        
-        $sql = "INSERT INTO airline (email, pass, airline_name, logo) VALUES ('$email', '$pass', '$airline_name', '$logo_path')";
-        $result = mysqli_query($conn, $sql);
-        if($result) {
-            echo "Record added successfully.";
+        if (move_uploaded_file($logo_tmp, $logo_path)) {
+            $sql = "INSERT INTO airline (email, pass, airline_name, logo) VALUES ('$email', '$pass', '$airline_name', '$logo_path')";
+            $result = mysqli_query($conn, $sql);
+            if($result) {
+                echo "Record added successfully.";
+            } else {
+                echo "Error: " . mysqli_error($conn);
+            }
         } else {
-<<<<<<< Updated upstream
-=======
             echo "Error uploading file.";
         }
     } elseif ($_POST["action"] == "edit") {
@@ -51,13 +50,11 @@ if(isset($_POST["action"])) {
         if($result) {
             echo "Record deleted successfully.";
         } else {
->>>>>>> Stashed changes
             echo "Error: " . mysqli_error($conn);
         }
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,7 +89,10 @@ if(isset($_POST["action"])) {
                     echo "<td>".$row["pass"]."</td>";
                     echo "<td>".$row["airline_name"]."</td>";
                     echo "<td><img src='".$row["logo"]."' style='max-width: 100px;' /></td>";
-                    echo "<td><button class='btn btn-info'>Update</button> <button class='btn btn-danger'>Delete</button></td>";
+                    echo "<td>
+                            <button class='btn btn-info editBtn' data-id='".$row["id"]."'>Edit</button>
+                            <button class='btn btn-danger deleteBtn' data-id='".$row["id"]."'>Delete</button>
+                          </td>";
                     echo "</tr>";
                 }
                 ?>
@@ -100,36 +100,33 @@ if(isset($_POST["action"])) {
         </table>
     </div>
 
-    <!-- Add Airline Modal -->
-    <div id="addModal" class="modal fade">
+    <!-- Add/Edit Airline Modal -->
+    <div id="addEditModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="addForm" method="POST" action="" enctype="multipart/form-data">
+                <form id="addEditForm" method="POST" action="">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Airline</h4>
+                        <h4 class="modal-title">Add/Edit Airline</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
+                        <input type="hidden" name="edit_airline_id" id="edit_airline_id">
                         <div class="form-group">
                             <label>Email:</label>
-                            <input type="text" class="form-control" name="email">
+                            <input type="text" class="form-control" name="edit_email" id="edit_email">
                         </div>
                         <div class="form-group">
                             <label>Password:</label>
-                            <input type="password" class="form-control" name="pass">
+                            <input type="password" class="form-control" name="edit_pass" id="edit_pass">
                         </div>
                         <div class="form-group">
                             <label>Airline Name:</label>
-                            <input type="text" class="form-control" name="airline_name">
-                        </div>
-                        <div class="form-group">
-                            <label>Logo:</label>
-                            <input type="file" class="form-control-file" name="logo">
+                            <input type="text" class="form-control" name="edit_airline_name" id="edit_airline_name">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="action" value="add">
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <input type="hidden" name="action" id="modal_action">
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
@@ -142,8 +139,6 @@ if(isset($_POST["action"])) {
     <!-- Custom JavaScript -->
     <script>
         $(document).ready(function () {
-<<<<<<< Updated upstream
-=======
             // Show add/edit modal
             $(".editBtn").click(function () {
                 var airline_id = $(this).data("id");
@@ -183,10 +178,14 @@ if(isset($_POST["action"])) {
                 }
             });
 
->>>>>>> Stashed changes
             // Show add modal
             $("#showAddModal").click(function () {
-                $("#addModal").modal('show');
+                $("#edit_airline_id").val("");
+                $("#edit_email").val("");
+                $("#edit_pass").val("");
+                $("#edit_airline_name").val("");
+                $("#modal_action").val("add");
+                $("#addEditModal").modal("show");
             });
         });
     </script>
