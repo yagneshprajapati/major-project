@@ -19,7 +19,6 @@ CREATE TABLE users (
     pincode VARCHAR(50)
 );
 
-
 -- Table for Admins
 
 CREATE TABLE admins (
