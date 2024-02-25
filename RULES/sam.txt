@@ -1,0 +1,125 @@
+-- Insert data into Users table
+INSERT INTO users (first_name, last_name, username, email, password, phone_number, gender, confirmed_email, profile_pic_url, address_line1, address_line2, city, state, country, pincode)
+VALUES
+('John', 'Doe', 'johndoe', 'john.doe@example.com', 'password123', '1234567890', 'Male', true, 'profile1.jpg', '123 Main St', 'Apt 4', 'Cityville', 'Stateville', 'Countryland', '12345'),
+('Alice', 'Smith', 'alicesmith', 'alice.smith@example.com', 'pass456', '9876543210', 'Female', true, 'profile2.jpg', '456 Oak St', 'Suite 7', 'Townsville', 'Stateville', 'Countryland', '56789'),
+('Bob', 'Johnson', 'bobjohnson', 'bob.johnson@example.com', 'secure789', '3456789012', 'Male', false, NULL, '789 Pine St', 'Unit 12', 'Villagetown', 'Stateville', 'Countryland', '98765');
+
+-- Insert data into Admins table
+INSERT INTO admins (username, email, password)
+VALUES
+('admin1', 'admin1@example.com', 'admin123'),
+('admin2', 'admin2@example.com', 'admin456'),
+('admin3', 'admin3@example.com', 'admin789');
+
+-- Insert data into Vendors table
+INSERT INTO vendors (username, email, password, confirmed_email, company_name, contact_person, phone_number, website_url, profile_pic_url, address_line1, address_line2, city, state, country)
+VALUES
+('vendor1', 'vendor1@example.com', 'vendor123', true, 'ABC Electronics', 'John Vendor', '9876543210', 'www.abc.com', 'vendor_pic1.jpg', '123 Market St', 'Shop 1', 'Martville', 'Marketland', 'Countrymart'),
+('vendor2', 'vendor2@example.com', 'vendor456', true, 'XYZ Fashion', 'Jane Vendor', '1234567890', 'www.xyz.com', 'vendor_pic2.jpg', '456 Street Rd', 'Store 2', 'Shopville', 'Storeland', 'Countrystore'),
+('vendor3', 'vendor3@example.com', 'vendor789', false, 'LMN Appliances', 'Bob Vendor', '3456789012', 'www.lmn.com', NULL, '789 Plaza Blvd', 'Outlet 3', 'Malltown', 'Outletland', 'Countrymall');
+
+-- Insert data into Airline Admins table
+INSERT INTO airline_admins (username, email, password, confirmed_email, airline_id, profile_pic_url, address_line1, address_line2, city, state, country)
+VALUES
+('airadmin1', 'airadmin1@example.com', 'airadmin123', true, 1, 'airadmin_pic1.jpg', '123 Sky St', 'Suite 5', 'Skytown', 'Skyville', 'Skyland'),
+('airadmin2', 'airadmin2@example.com', 'airadmin456', true, 2, 'airadmin_pic2.jpg', '456 Cloud Rd', 'Unit 8', 'Cloudsville', 'Cloudland', 'Cloudcountry'),
+('airadmin3', 'airadmin3@example.com', 'airadmin789', false, 3, NULL, '789 Jet Blvd', 'Shop 10', 'Jetville', 'Jetland', 'Jetcountry');
+
+-- Insert data into Notifications table
+INSERT INTO notifications (user_id, message, is_read)
+VALUES
+(1, 'You have a new message!', false),
+(2, 'Your order has been shipped.', true),
+(3, 'Special promotion for you!', false);
+
+-- Insert data into Wishlists table
+INSERT INTO wishlists (user_id, product_id)
+VALUES
+(1, 101),
+(2, 102),
+(3, 103);
+
+-- Insert data into Products table
+INSERT INTO products (name, description, price, stock_quantity, discount, category_id, subcategory_id)
+VALUES
+('Product 1', 'Description 1', 49.99, 100, 5.00, 1, 101),
+('Product 2', 'Description 2', 29.99, 50, 2.50, 2, 102),
+('Product 3', 'Description 3', 19.99, 75, 1.00, 3, 103);
+
+-- Insert data into Product Images table
+INSERT INTO product_images (product_id, image_url)
+VALUES
+(101, 'image1.jpg'),
+(102, 'image2.jpg'),
+(103, 'image3.jpg');
+
+-- Insert data into Comments table
+INSERT INTO comments (user_id, product_id, comment)
+VALUES
+(1, 101, 'Great product!'),
+(2, 102, 'Nice design.'),
+(3, 103, 'Could be better.');
+
+-- Insert data into Ratings table
+INSERT INTO ratings (user_id, product_id, rating)
+VALUES
+(1, 101, 4.5),
+(2, 102, 3.8),
+(3, 103, 4.2);
+
+-- Insert data into Cart table
+INSERT INTO cart (user_id, product_id, quantity)
+VALUES
+(1, 101, 2),
+(2, 102, 1),
+(3, 103, 3);
+
+-- Insert data into Orders table
+INSERT INTO orders (user_id, order_date, status, payment_method, payment_status, transaction_id, total_amount)
+VALUES
+(1, '2024-02-24 12:30:00', 'Pending', 'Credit Card', 'Not Paid', 'txn123', 150.00),
+(2, '2024-02-25 10:45:00', 'Shipped', 'PayPal', 'Paid', 'txn456', 100.00),
+(3, '2024-02-26 15:20:00', 'Delivered', 'Cash on Delivery', 'Paid', 'txn789', 200.00);
+
+-- Insert data into Order Items table
+INSERT INTO order_items (order_id, product_id, quantity)
+VALUES
+(1, 101, 2),
+(2, 102, 1),
+(3, 103, 3);
+
+-- Insert data into Book Demo table
+INSERT INTO book_demo (user_id, product_id, demo_date, status)
+VALUES
+(1, 101, '2024-03-01 14:00:00', 'Scheduled'),
+(2, 102, '2024-03-02 16:30:00', 'Completed'),
+(3, 103, '2024-03-03 12:45:00', 'Pending');
+
+-- Insert data into Report Issue table
+INSERT INTO report_issue (user_id, product_id, description)
+VALUES
+(1, 101, 'Defective part received.'),
+(2, 102, 'Wrong color delivered.'),
+(3, 103, 'Product not as described.');
+
+-- Insert data into Airports table
+INSERT INTO airports (code, name)
+VALUES
+('JFK', 'John F. Kennedy International Airport'),
+('LAX', 'Los Angeles International Airport'),
+('ORD', 'O''Hare International Airport');
+
+-- Insert data into Airlines table
+INSERT INTO airlines (name, home_airport_id)
+VALUES
+('Delta Airlines', 1),
+('United Airlines', 3),
+('American Airlines', 2);
+
+-- Insert data into Flights table
+INSERT INTO flights (airline_id, departure_airport_id, destination_airport_id, departure_datetime, arrival_datetime, price, available_seats, flight_number, aircraft_type, cabin_class, meal_service, WiFi_service, baggage_allowance, ticket_booking_url)
+VALUES
+(1, 1, 3, '2024-03-10 08:00:00', '2024-03-10 12:00:00', 250.00, 150, 'DL123', 'Boeing 737', 'Economy', true, false, '20 kg', 'https://delta.com/book/flight123'),
+(2, 2, 1, '2024-03-12 14:30:00', '2024-03-12 18:30:00', 300.00, 120, 'UA456', 'Airbus A320', 'Business', true, true, '30 kg', 'https://united.com/book/flight456'),
+(3, 3, 2, '2024-03-15 10:45:00', '2024-03-15 14:45:00', 200.00, 180, 'AA789', 'Boeing 747', 'First Class', false, true, '25 kg', 'https://american.com/book/flight789');

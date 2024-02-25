@@ -1,0 +1,77 @@
+    USER Pages
+=================================================================
+    ➔ login.php                    // Login
+    ➔ register.php                 // Register
+    ➔ confirm_email.php            // Confirm Email
+    ➔ profile.php                  // Profile
+    ➔ notifications.php            // Notifications
+    ➔ help.php                     // Help
+    ➔ wishlist.php                 // Wishlist
+    ➔ about.php                    // About
+    ➔ contact.php                  // Contact
+    ➔ home.php                     // Home
+    ➔ shop.php                     // Shop
+    ➔ product.php                  // Product Details
+    ➔ cart.php                     // Cart
+    ➔ checkout.php                 // Checkout
+    ➔ payment.php                  // Payment
+    ➔ order_status.php            // Order Confirm or not
+    ➔ user_dashboard.php           // Dashboard
+    ➔ book_demo.php                // Book Demo
+    ➔ report_issue.php             // Report Issue
+    ➔ flights.php                  // Flights
+    ➔ flight_search.php            // Flight Search
+    ➔ flight_details.php           // Flight Details
+    ➔ select_flight.php            // Select Flight
+    ➔ flight_payment.php           // Flight Payment
+    ➔ booking_confirm.php          // Booking Confirm
+    ➔ order_history.php            // Order History
+
+
+    ADMIN Pages
+=================================================================
+    ➔ login.php                    // Login
+    ➔ admin_dashboard.php          // Admin Dashboard
+    ➔ manage_users.php             // Manage Users
+    ➔ manage_products.php          // Manage Products
+    ➔ manage_orders.php            // Manage Orders
+    ➔ manage_appointments.php      // Manage Appointments
+    ➔ manage_warranty.php          // Manage Warranty
+    ➔ manage_demos.php             // Manage Demos
+    ➔ airport_mgmt.php             // Airport Mgmt
+    ➔ airline_mgmt.php             // Airline Mgmt
+    ➔ manage_flights.php           // Manage Flights
+    ➔ admin_settings.php           // Admin Settings
+
+
+    VENDOR Pages
+=================================================================
+    ➔ login.php                    // Login
+    ➔ register.php                 // Register
+    ➔ confirm_email.php            // Confirm Email
+    ➔ profile.php                  // Profile
+    ➔ notifications.php            // Notifications
+    ➔ vendor_dashboard.php         // Vendor Dashboard
+    ➔ manage_products.php          // Manage Products
+    ➔ order_history.php            // Order History
+    ➔ view_comments.php            // View Comments
+    ➔ schedule_demo.php            // Schedule Demo
+    ➔ manage_warranty.php          // Manage Warranty
+    ➔ submit_complaint.php         // Submit Complaint
+    ➔ manage_demos.php             // Manage Demos
+    ➔ vendor_settings.php          // Vendor Settings
+
+
+    AIRLINE Pages
+=================================================================
+    ➔ airline_dashboard.php        // Airline Dashboard
+    ➔ manage_flights.php           // Manage Flights
+    ➔ view_flight.php              // View Flight
+    ➔ manage_bookings.php          // Manage Bookings
+    ➔ airline_settings.php         // Airline Settings
+
+
+
+
+
+
