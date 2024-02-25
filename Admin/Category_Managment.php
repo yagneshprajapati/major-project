@@ -320,7 +320,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         category_id = e.target.id.substr(1);
 
         if (confirm("Are you sure you want to delete this record!")) {
-          window.location = `/shopflix/Admin/Product_Management.php?delete=${category_id}`;
+          window.location = `/shopflix/Admin/Category_Management.php?delete=${category_id}`;
         }
       })
     })
