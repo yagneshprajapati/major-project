@@ -64,7 +64,11 @@
 
     AIRLINE Pages
 =================================================================
+<<<<<<< Updated upstream
     ➔ login.php                    // Login
+=======
+    
+>>>>>>> Stashed changes
     ➔ airline_dashboard.php        // Airline Dashboard
     ➔ manage_flights.php           // Manage Flights
     ➔ view_flight.php              // View Flight

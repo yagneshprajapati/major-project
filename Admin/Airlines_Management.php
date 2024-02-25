@@ -22,6 +22,36 @@ if(isset($_POST["action"])) {
         if($result) {
             echo "Record added successfully.";
         } else {
+<<<<<<< Updated upstream
+=======
+            echo "Error uploading file.";
+        }
+    } elseif ($_POST["action"] == "edit") {
+        // Handle edit operation
+        $email = $_POST["edit_email"];
+        $pass = $_POST["edit_pass"];
+        $airline_name = $_POST["edit_airline_name"];
+        $airline_id = $_POST["edit_airline_id"];
+        
+        // Perform the update query
+        $sql = "UPDATE airline SET email='$email', pass='$pass', airline_name='$airline_name' WHERE id='$airline_id'";
+        $result = mysqli_query($conn, $sql);
+        if($result) {
+            echo "Record updated successfully.";
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
+    } elseif ($_POST["action"] == "delete") {
+        // Handle delete operation
+        $airline_id = $_POST["delete_airline_id"];
+        
+        // Perform the delete query
+        $sql = "DELETE FROM airline WHERE id='$airline_id'";
+        $result = mysqli_query($conn, $sql);
+        if($result) {
+            echo "Record deleted successfully.";
+        } else {
+>>>>>>> Stashed changes
             echo "Error: " . mysqli_error($conn);
         }
     }
@@ -112,6 +142,48 @@ if(isset($_POST["action"])) {
     <!-- Custom JavaScript -->
     <script>
         $(document).ready(function () {
+<<<<<<< Updated upstream
+=======
+            // Show add/edit modal
+            $(".editBtn").click(function () {
+                var airline_id = $(this).data("id");
+                $.ajax({
+                    url: "get_airline.php",
+                    method: "POST",
+                    data: {id: airline_id},
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.hasOwnProperty('id')) { // Check if 'id' index exists
+                            $("#edit_airline_id").val(data.id);
+                            $("#edit_email").val(data.email);
+                            $("#edit_pass").val(data.pass);
+                            $("#edit_airline_name").val(data.airline_name);
+                            $("#modal_action").val("edit");
+                            $("#addEditModal").modal("show");
+                        } else {
+                            console.error("Error: 'id' index not found in response data.");
+                        }
+                    }
+                });
+            });
+
+            // Show delete modal
+            $(".deleteBtn").click(function () {
+                var airline_id = $(this).data("id");
+                if (confirm("Are you sure you want to delete this record?")) {
+                    $.ajax({
+                        url: "delete_airline.php",
+                        method: "POST",
+                        data: {id: airline_id},
+                        success: function (data) {
+                            alert(data);
+                            location.reload();
+                        }
+                    });
+                }
+            });
+
+>>>>>>> Stashed changes
             // Show add modal
             $("#showAddModal").click(function () {
                 $("#addModal").modal('show');
@@ -119,5 +191,4 @@ if(isset($_POST["action"])) {
         });
     </script>
 </body>
-
 </html>
