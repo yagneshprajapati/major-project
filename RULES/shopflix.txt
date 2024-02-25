@@ -15,8 +15,8 @@
     ➔ cart.php                     // Cart
     ➔ checkout.php                 // Checkout
     ➔ payment.php                  // Payment
-    ➔ order_status.php            // Order Confirm or not
-    ➔ user_dashboard.php           // Dashboard
+    ➔ order_status.php             // Order Confirm or not
+    ➔ bill.php                     // bill 
     ➔ book_demo.php                // Book Demo
     ➔ report_issue.php             // Report Issue
     ➔ flights.php                  // Flights
@@ -26,7 +26,7 @@
     ➔ flight_payment.php           // Flight Payment
     ➔ booking_confirm.php          // Booking Confirm
     ➔ order_history.php            // Order History
-
+    ➔ user_settings.php           // user Settings
 
     ADMIN Pages
 =================================================================
@@ -64,11 +64,12 @@
 
     AIRLINE Pages
 =================================================================
+    ➔ login.php                    // Login
     ➔ airline_dashboard.php        // Airline Dashboard
     ➔ manage_flights.php           // Manage Flights
     ➔ view_flight.php              // View Flight
     ➔ manage_bookings.php          // Manage Bookings
-    ➔ airline_settings.php         // Airline Settings
+    ➔ airline_settings.php         // Airline Settings profile
 
 
 

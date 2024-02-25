@@ -225,10 +225,8 @@ CREATE TABLE flights (
     price DECIMAL(10, 2) NOT NULL,
     available_seats INT NOT NULL,
     flight_number VARCHAR(20) NOT NULL,
-    aircraft_type VARCHAR(50),
     cabin_class VARCHAR(20),
     meal_service BOOLEAN,
-    WiFi_service BOOLEAN,
     baggage_allowance VARCHAR(50),
     ticket_booking_url VARCHAR(255), -- URL for users to book tickets
     FOREIGN KEY (airline_id) REFERENCES airlines(airline_id),
