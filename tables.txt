@@ -266,7 +266,6 @@ CREATE TABLE order_items (
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
-
 -- Table for Book Demo
 CREATE TABLE book_demo (
     demo_id INT PRIMARY KEY AUTO_INCREMENT,

@@ -3,6 +3,8 @@ session_start();
 if (!isset($_SESSION['user_type'])) {
     header('location: login.php');
 }
+
+
 require_once('includes/showMessage.php');
 require 'includes/functions.php';
 displaySessionMessage();
