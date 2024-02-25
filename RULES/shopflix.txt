@@ -4,7 +4,6 @@
     ➔ register.php                 // Register
     ➔ confirm_email.php            // Confirm Email
     ➔ profile.php                  // Profile
-    ➔ notifications.php            // Notifications
     ➔ help.php                     // Help
     ➔ wishlist.php                 // Wishlist
     ➔ about.php                    // About
@@ -49,13 +48,10 @@
     ➔ login.php                    // Login
     ➔ register.php                 // Register
     ➔ confirm_email.php            // Confirm Email
-    ➔ profile.php                  // Profile
-    ➔ notifications.php            // Notifications
     ➔ vendor_dashboard.php         // Vendor Dashboard
     ➔ manage_products.php          // Manage Products
     ➔ order_history.php            // Order History
     ➔ view_comments.php            // View Comments
-    ➔ schedule_demo.php            // Schedule Demo
     ➔ manage_warranty.php          // Manage Warranty
     ➔ submit_complaint.php         // Submit Complaint
     ➔ manage_demos.php             // Manage Demos
@@ -65,8 +61,10 @@
     AIRLINE Pages
 =================================================================
     ➔ login.php                    // Login
+    ➔ register.php                 // Register
+    ➔ confirm_email.php            // Confirm Email
     ➔ airline_dashboard.php        // Airline Dashboard
-    ➔ manage_flights.php           // Manage Flights
+    ➔ add_flights.php              // add Flights
     ➔ view_flight.php              // View Flight
     ➔ manage_bookings.php          // Manage Bookings
     ➔ airline_settings.php         // Airline Settings profile
