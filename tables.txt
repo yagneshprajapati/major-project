@@ -302,7 +302,7 @@ CREATE TABLE airlines (
     airline_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     home_airport_id INT NOT NULL,
-    FOREIGN KEY (home_airport_id) REFERENCES airports(airport_id)
+    FOREIGN KEY (Airport_id) REFERENCES airport(Airport_id)
 );
 
 -- Table for Flights
